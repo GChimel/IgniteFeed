@@ -5,6 +5,42 @@ import { Sidebar } from './components/Sidebar';
 import './global.css';
 import styles from './App.module.css';
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://github.com/GChimel.png',
+      name: 'Gustavo Chimel',
+      role: 'Developer'
+    },
+    content: [
+      { type: 'paragraph', content: 'Fala Galeraa', },
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifolio. É um projeto que fiz na última semana!' },
+      { type: 'paragraph', content: 'Arrasta pra cima' },
+      
+      { type: 'link', content: '#Meu git hub' },
+    ],
+    publishedAt: new Date('2024-02-01 20:00:00'),
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: 'https://github.com/ninrod.png',
+      name: 'Eduardo costa',
+      role: 'Publicitario'
+    },
+    content: [
+      { type: 'paragraph', content: 'Bom dia pessoal!', },
+      { type: 'paragraph', content: 'Se liga nessa última entrevista que eu fui....' },
+      { type: 'paragraph', content: 'É isso!' },
+      
+      { type: 'link', content: '#Insta' },
+    ],
+    publishedAt: new Date('2024-02-05 20:00:00'),
+  },
+]
+
+
 function App() {
   return (
     <div>
@@ -13,14 +49,16 @@ function App() {
       <div className={styles.wrapper}>
         <Sidebar/>
         <main>
-          <Post
-            title="Gustavo"
-            content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque accusantium eos quaerat ea aperiam debitis, dolorum excepturi alias quibusdam perferendis, quod omnis rem amet. Quaerat incidunt dolorem quo enim similique?"
-          />
-          <Post
-            title="Junior"
-            content="I love ReactJS"
-          />
+         {posts.map(post => {
+          return (
+            <Post
+              key={post.id}
+              author={post.author}
+              content={post.content}
+              publishedAt={post.publishedAt} 
+            />
+          )
+         })}
         </main>
 
       </div>
@@ -29,5 +67,3 @@ function App() {
 }
 
 export default App
-
-
